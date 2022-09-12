@@ -23,7 +23,8 @@ export class TokenService {
     }
 
     async exists(uId: string): Promise<any>{
-        await this.tokenModel.exists({ uId })
+        const bool = await this.tokenModel.exists({ uId })
+        return bool;
     }
 
     async find(uId: any): Promise<any>{

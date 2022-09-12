@@ -3,7 +3,6 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import moment = require('moment');
 import * as bcrypt from 'bcrypt';
-import * as _ from 'lodash';
 import { SignOptions } from 'jsonwebtoken';
 import { UserService } from '../user/user.service';
 import { TokenService} from '../token/token.service';

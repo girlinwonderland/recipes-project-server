@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Res, Req, ValidationPipe, UsePipes } from '@nestjs/common';
+import { Controller, Post, Get, Body, Res, Req, ValidationPipe, UsePipes } from '@nestjs/common';
 import { Response, Request } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
@@ -14,9 +14,7 @@ export class AuthController {
     async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<any> {
         const userData = await this.authService.signUp(createUserDto);
         // response.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60, httpOnly: true } )
-        return {
-            data: userData
-        }
+        return userData
     }
 
     @Post('/signIn')
@@ -34,7 +32,7 @@ export class AuthController {
         return response.json(token);
     }
 
-    @Post('/refresh')
+    @Get('/refresh')
     async refresh(@Req() request: Request, @Res() response: Response): Promise<any>{
         const { refreshToken } = request.cookies;
         const userData = await this.authService.refresh(refreshToken);
@@ -42,7 +40,6 @@ export class AuthController {
         response.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60, httpOnly: true } )
         return response.json(userData);
     }
-
 
 
 }
