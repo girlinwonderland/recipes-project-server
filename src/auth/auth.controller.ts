@@ -8,7 +8,9 @@ import { SignInDto } from './dto/signin.dto';
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService) { }
+    constructor(
+      private readonly authService: AuthService,
+    ) { }
 
     @Post('/signUp')
     async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<any> {
@@ -41,5 +43,10 @@ export class AuthController {
         return response.json(userData);
     }
 
+    // @Get('/recipes')
+    // async savedRecipes(@Req() request: Request, @Res() response: Response): Promise<any>{
+    //     const { refreshToken } = request.cookies;
+    //     return await this.authService.allPosts(refreshToken)
+    // }
 
 }

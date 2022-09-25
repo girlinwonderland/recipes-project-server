@@ -132,6 +132,11 @@ export class AuthService {
         return token;
     }
 
+    // async allPosts(refreshToken: string): Promise<any> {
+    //     const userData = await this.verifyToken(refreshToken);
+    //     return await this.postModel.find({ userId: `${userData._id}` });
+    // }
+
     async refresh(refreshToken: string): Promise<any>{
         if (!refreshToken){
             throw new BadRequestException('Пользователь не авторизован');

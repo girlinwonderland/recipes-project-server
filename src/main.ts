@@ -10,7 +10,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.use(cors({
     credentials: true,
-    origin: [process.env.FRONT_URL, '*']
+    origin: [process.env.FRONT_URL, '*'],
   }))
   const options = new DocumentBuilder()
       .addBearerAuth()
