@@ -48,7 +48,7 @@ export class UserService {
     }
 
     async editPost(dto: CreatePostDto, id: string): Promise<boolean>{
-        await this.postModel.updateOne({ id }, { ...dto });
+        await this.postModel.updateOne({ _id: id }, { ...dto });
         return true
     }
 

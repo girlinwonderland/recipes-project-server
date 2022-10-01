@@ -14,4 +14,7 @@ export class CreatePostDto {
     @IsString()
     @ApiProperty()
     readonly userId: ObjectId;
+    @IsString()
+    @ApiProperty()
+    readonly favourite: boolean
 }

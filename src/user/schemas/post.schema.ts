@@ -5,7 +5,8 @@ export const PostSchema = new mongoose.Schema({
     userId: String,
     title: String,
     description: String,
-    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    favourite: Boolean
 })
 
 PostSchema.index({ id: 1 }, { unique: true })

@@ -22,7 +22,7 @@ export class AuthController {
     @Post('/signIn')
     async signIn(@Body(new ValidationPipe()) signInDto: SignInDto, @Res() response: Response): Promise<any> {
         const userData = await this.authService.signIn(signInDto);
-        response.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60, httpOnly: true } )
+        response.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true } )
         return response.json(userData);
     }
 
@@ -39,7 +39,7 @@ export class AuthController {
         const { refreshToken } = request.cookies;
         const userData = await this.authService.refresh(refreshToken);
         response.clearCookie('refreshToken');
-        response.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60, httpOnly: true } )
+        response.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true } )
         return response.json(userData);
     }
 
